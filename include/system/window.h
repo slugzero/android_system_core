@@ -225,6 +225,11 @@ enum {
     NATIVE_WINDOW_CONSUMER_RUNNING_BEHIND = 9
 };
 
+enum
+{
+	NATIVE_WINDOW_CMD_GET_SURFACE_TEXTURE_TYPE = 0,
+};
+
 /* Valid operations for the (*perform)() hook.
  *
  * Values marked as 'deprecated' are supported, but have been superceded by
@@ -254,6 +259,8 @@ enum {
     NATIVE_WINDOW_SET_BUFFERS_USER_DIMENSIONS = 15, /* private */
     NATIVE_WINDOW_SET_POST_TRANSFORM_CROP   = 16,   /* private */
     NATIVE_WINDOW_SET_BUFFERS_SIZE          = 17,   /* private */
+    NATIVE_WINDOW_SETPARAMETER              = 50,
+    NATIVE_WINDOW_GETPARAMETER              = 51
 };
 
 /* parameter for NATIVE_WINDOW_[API_][DIS]CONNECT */
@@ -275,6 +282,11 @@ enum {
     /* Buffers will be queued by the the camera HAL.
      */
     NATIVE_WINDOW_API_CAMERA = 4,
+
+    NATIVE_WINDOW_API_MEDIA_HW = 5,
+
+    NATIVE_WINDOW_API_CAMERA_HW = 6,
+
 };
 
 /* parameter for NATIVE_WINDOW_SET_BUFFERS_TRANSFORM */
@@ -593,6 +605,14 @@ static inline int native_window_set_buffers_geometry(
 {
     return window->perform(window, NATIVE_WINDOW_SET_BUFFERS_GEOMETRY,
             w, h, format);
+}
+
+static inline int native_window_set_buffers_geometryex(
+        struct ANativeWindow* window,
+        int w, int h, int format,int screenid)
+{
+    return window->perform(window, NATIVE_WINDOW_SET_BUFFERS_GEOMETRY,
+            w, h, format,screenid);
 }
 
 /*

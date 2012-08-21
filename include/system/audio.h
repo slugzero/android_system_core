@@ -71,6 +71,7 @@ typedef enum {
     AUDIO_SOURCE_FM_RX               = 8,
     AUDIO_SOURCE_FM_RX_A2DP          = 9,
 #endif
+AUDIO_SOURCE_AF		             = 10,
 
     AUDIO_SOURCE_CNT,
     AUDIO_SOURCE_MAX                 = AUDIO_SOURCE_CNT - 1,
