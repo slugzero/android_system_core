@@ -244,7 +244,7 @@ void service_start(struct service *svc, const char *dynamic_args)
         char tmp[32];
         int fd, sz;
 
-        umask(077);
+
 #ifdef __arm__
         /*
          * b/7188322 - Temporarily revert to the compat memory layout
@@ -260,6 +260,7 @@ void service_start(struct service *svc, const char *dynamic_args)
         int current = personality(0xffffFFFF);
         personality(current | ADDR_COMPAT_LAYOUT);
 #endif
+
         if (properties_inited()) {
             get_property_workspace(&fd, &sz);
             sprintf(tmp, "%d,%d", dup(fd), sz);
