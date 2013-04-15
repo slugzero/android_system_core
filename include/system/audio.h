@@ -47,7 +47,7 @@ typedef enum {
     AUDIO_STREAM_ENFORCED_AUDIBLE = 7, /* Sounds that cannot be muted by user and must be routed to speaker */
     AUDIO_STREAM_DTMF             = 8,
     AUDIO_STREAM_TTS              = 9,
-#ifdef QCOM_FM_ENABLED
+#if defined(QCOM_FM_ENABLED) || defined(USES_AUDIO_LEGACY)
     AUDIO_STREAM_FM               = 10,
 #endif
 
@@ -556,7 +556,7 @@ static inline bool audio_is_input_device(audio_devices_t device)
 static inline bool audio_is_output_devices(audio_devices_t device)
 {
 #ifdef ICS_AUDIO_BLOB
-    return (device & ~AUDIO_DEVICE_OUT_ALL) == 0;s
+    return (device & ~AUDIO_DEVICE_OUT_ALL) == 0;
 #else
     return (device & AUDIO_DEVICE_BIT_IN) == 0;
 #endif
